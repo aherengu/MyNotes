@@ -1,48 +1,48 @@
-### Git Komutları ve Açıklamaları
+Git Komutları ve Açıklamaları
 
-#### **Kullanıcı Ayarları**  
-- **`git config --global user.name "zazukanal"`** → Kullanıcı adını "zazukanal" olarak ayarlar.  
-- **`git config user.name`** → Mevcut kullanıcı adını görüntüler.  
+Kullanıcı Ayarları 
+git config --global user.name "zazukanal"`** → Kullanıcı adını "zazukanal" olarak ayarlar.  
+git config user.name`** → Mevcut kullanıcı adını görüntüler.  
 
-#### **Depo (Repository) İşlemleri**  
-- **`git init`** → Yeni bir Git deposu başlatır.  
-- **`rm -rf .git`** → Depodaki `.git` klasörünü silerek Git versiyon kontrolünü kaldırır.  
+Depo (Repository) İşlemleri  
+git init ** → Yeni bir Git deposu başlatır.  
+rm -rf .git ** → Depodaki `.git` klasörünü silerek Git versiyon kontrolünü kaldırır.  
 
-#### **Dosya ve Commit İşlemleri**  
-- **`git status`** → Çalışma alanının mevcut durumunu gösterir.  
-- **`git add "dosya adı"`** → Belirtilen dosyayı commit için hazır hale getirir.  
-- **`git add .`** → Tüm değişiklikleri commit için hazır hale getirir.  
-- **`git commit -m "mesaj"`** → Değişiklikleri belirtilen mesajla commit eder.  
-- **`git log`** → Commit geçmişini gösterir.  
-- **`touch .gitignore`** → `.gitignore` dosyasını oluşturur, içine yazılan dosyalar Git tarafından izlenmez.  
+Dosya ve Commit İşlemleri  
+git status ** → Çalışma alanının mevcut durumunu gösterir.  
+git add "dosya adı" ** → Belirtilen dosyayı commit için hazır hale getirir.  
+git add . ** → Tüm değişiklikleri commit için hazır hale getirir.  
+git commit -m "mesaj" ** → Değişiklikleri belirtilen mesajla commit eder.  
+git log`** → Commit geçmişini gösterir.  
+touch .gitignore ** → `.gitignore` dosyasını oluşturur, içine yazılan dosyalar Git tarafından izlenmez.  
 
-#### **Branch İşlemleri**  
-- **`git branch`** → Mevcut branch’leri gösterir.  
-- **`git branch "isim"`** → Yeni bir branch oluşturur ama o branch’e geçmez.  
-- **`git switch "branch ismi"`** → Belirtilen branch’e geçiş yapar.  
-- **`git merge "birleşecek ismi"`** → Mevcut branch’te, belirtilen branch’i birleştirir.  
+Branch İşlemleri 
+git branch ** → Mevcut branch’leri gösterir.  
+git branch "isim" ** → Yeni bir branch oluşturur ama o branch’e geçmez.  
+git switch "branch ismi" ** → Belirtilen branch’e geçiş yapar.  
+git merge "birleşecek ismi" ** → Mevcut branch’te, belirtilen branch’i birleştirir.  
 
-#### **Dosya ve Değişiklikleri Geri Alma**  
-- **`git restore "isim"`** → Belirtilen dosyayı en son commit edilen haline geri getirir.  
+Dosya ve Değişiklikleri Geri Alma  
+git restore "isim" ** → Belirtilen dosyayı en son commit edilen haline geri getirir.  
 
-#### **Git Stash ile İlgili Komutlar**  
-- **`git stash`** → Çalıştığın değişiklikleri kaydedip (ama commit atmadan) saklar ve çalışma alanını temiz hale getirir.  
-- **`git stash pop`** → Son eklenen stash’i geri alır ve stash listesinden siler.  
-- **`git stash apply`** → `git stash pop` gibi stash’i geri alır ama stash listesinden silmez.  
-- **`git stash list`** → Mevcut stash’leri listeler.  
-- **`git stash clear`** → Tüm stash’leri siler.  
+Git Stash ile İlgili Komutlar 
+git stash ** → Çalıştığın değişiklikleri kaydedip (ama commit atmadan) saklar ve çalışma alanını temiz hale getirir.  
+git stash pop ** → Son eklenen stash’i geri alır ve stash listesinden siler.  
+git stash apply ** → `git stash pop` gibi stash’i geri alır ama stash listesinden silmez.  
+git stash list ** → Mevcut stash’leri listeler.  
+git stash clear ** → Tüm stash’leri siler.  
 
-#### **Commit Geri Alma & Reset İşlemleri**  
-- **`git checkout "id"`** → Geçici olarak belirtilen commit’e geçiş yapar (kalıcı değişiklik yapmaz).  
-- **`git reset "id"`** → Commit geçmişini bu ID’ye döndürür ama dosya değişikliklerini korur.  
-- **`git reset --hard "id"`** → Commit geçmişini bu ID’ye döndürür ve tüm değişiklikleri siler.  
-- **`git revert "id"`** → Belirtilen commit’i geri alır, ancak bunu yeni bir commit oluşturarak yapar.  
-- **`git diff "id" "id"`** → İki commit arasındaki farkları gösterir.  
+Commit Geri Alma & Reset İşlemleri
+git checkout "id" ** → Geçici olarak belirtilen commit’e geçiş yapar (kalıcı değişiklik yapmaz).  
+git reset "id" ** → Commit geçmişini bu ID’ye döndürür ama dosya değişikliklerini korur.  
+git reset --hard "id" ** → Commit geçmişini bu ID’ye döndürür ve tüm değişiklikleri siler.  
+git revert "id" ** → Belirtilen commit’i geri alır, ancak bunu yeni bir commit oluşturarak yapar.  
+git diff "id" "id" ** → İki commit arasındaki farkları gösterir.  
 
-#### **Rebase & Merge Arasındaki Fark**  
-- **`git merge`** → İki branch’i birleştirir, ancak iki farklı geçmişi koruyarak yeni bir "merge commit" oluşturur.  
-- **`git rebase master`** → Belirtilen branch’in commit’lerini master’ın en son haline taşır, daha temiz bir commit geçmişi sağlar.  
-- **`git switch "ikinci base" / git rebase master`** → Mevcut branch’i belirtilen base branch’e göre yeniden düzenler.
+Rebase & Merge Arasındaki Fark  
+git merge ** → İki branch’i birleştirir, ancak iki farklı geçmişi koruyarak yeni bir "merge commit" oluşturur.  
+git rebase master ** → Belirtilen branch’in commit’lerini master’ın en son haline taşır, daha temiz bir commit geçmişi sağlar.  
+git switch "ikinci base" / git rebase master`** → Mevcut branch’i belirtilen base branch’e göre yeniden düzenler.
 
 Remote (Uzak Depo) İşlemleri
 
