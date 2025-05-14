@@ -154,9 +154,62 @@ INSERT INTO _customer SELECT * FROM customer;
 
 
 Spesifik kopyala(Limitli):
-INSERT INTO _customer(first_name,last_name) SELECT fisrt_name,last_name FROM customer LIMIT 2
+INSERT INTO _customer(first_name,last_name) SELECT first_name,last_name FROM customer LIMIT 2
 
+GOUP BY KULLANIMI
+SELECT province, COUNT(*) AS customer_count FROM customer GROUP BY province
 
+İleri seviye ORDER BY + GROUP BY Örnek
+SELECT order_date,COUNT(order_total) AS siparis_adedi,SUM(order_total) AS siparis_toplami
+FROM `order`
+GROUP BY order_date
+ORDER BY order_date DESC;
 
+BAYA ileri örnek
+SELECT product_id,product_name, COUNT(*) AS siparis_adedi, SUM(line_total) AS siparis_toplamı FROM order_detail
+JOIN product USING(product_id)
+GROUP BY product_id,product_name
+ORDER BY siparis_adedi DESC;
 
+HAVING Kullanımı (WHERE in aynısı sadece ORDER BY da kullanılıyo) 
+SELECT customer_id, first_name, last_name, COUNT(*) AS siparis_top, SUM(order_total) AS siparis_toplami 
+FROM `order`
+INNER JOIN customer USING(customer_id)
+GROUP BY customer_id, first_name, last_name
+HAVING SUM(order_total)>500;
+
+ROLLUP Kullanımı()
+SELECT 
+country, province, SUM(order_total) 
+FROM customer
+INNER JOIN `order` USING(customer_id)
+Group BY country, province WITH ROLLUP;
+
+GROUPING kullanımı:
+SELECT 
+IF(GROUPING(country),"Tüm Ülkeler",country)  AS country,
+IF(GROUPING(province),"Tüm Şehirler",province) AS province,
+SUM(order_total) AS siparis_toplami,
+COUNT(*) AS siparis_adedi
+FROM customer
+INNER JOIN `order` USING(customer_id)
+Group BY country, province WITH ROLLUP;
+
+ABS:
+SELECT *, ABS(product_price) AS mutlak FROM product;
+
+ROUND(ikinci sayı kaçıncı haneye yuvarlayacağı 20.5 e yuvarladı):
+SELECT ROUND(20.49,1) 
+
+TRUNCATE(Kırpma 20.4 oldu):
+SELECT TRUNCATE(20.49,1) 
+
+CEIL(Kendinden büyük en yakın tam sayı 26 oldu):
+SELECT CEIL(25.4)
+
+FLOOR(Kendinden küçük en yakın tam sayı 25 oldu):
+SELECT FLOOR(25.4)
+
+RAND(0 ile 1 arası sayı, 0 dahil 1 değil. İçine seed girilebiliyo.
+SELECT RAND()
 
