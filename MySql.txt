@@ -96,5 +96,67 @@ SELECT * FROM product WHERE product_price > ALL(SELECT product_price FROM produc
 EXISTS ile ile performanslı: SELECT * FROM product p
 WHERE EXISTS
 (
-	SELECT product_id FROM order_detail od WHERE od.	product_id=p.product_id
+	SELECT product_id FROM order_detail od WHERE od.product_id=p.product_id
 )
+
+INSERT ile ekleme:
+INSERT INTO category(category_id,category_code,category_name) VALUES(1,"Saat","Saat")
+
+INSERT ile ekleme ama AUTO Increase varsa:
+INSERT INTO category(category_id,category_code,category_name) VALUES(DEFAULT,"Saat","Saat")
+
+Başka Insert Yöntem:
+INSERT INTO category 
+SET 
+	category_code="Saat",
+	category_name="Saat"
+
+Başka Insert Yöntem:
+INSERT INTO category(category_code,category_name)
+VALUES
+	("TLF","Telefon"),
+	("HDD","Hardisk"),
+	("BLG","Pc")
+
+INSERT le ve hangi id ye eklediğini öğren:
+INSERT INTO product
+(category_id,product_code,product_name,product_price,buying_price,vat,stock_qty,unit_id,currency_id,promotion_id,supplier_id)
+VALUES(4,"RLX","ROLEX",2500,2250,18,20,2,1,DEFAULT,DEFAULT);
+SELECT last_insert_id();
+
+Hem order'a hem detail'e ekle aynı id ye ekle (order yazarken ters tırnak çünkü order komut ile karışabilir)
+INSERT INTO `order`
+(order_date,order_total,customer_id,payment_method_id)
+VALUES("2021-08-01",2900,1,1);
+INSERT INTO order_detail
+(order_id,order_qty,product_price,vat,line_total,product_id)
+VALUES
+(LAST_INSERT_ID(),1,2500,18,2500,12);
+
+UPDATE ile güncelle:
+UPDATE category
+SET category_code="SND",category_name="Sandalye"
+WHERE category_id=5
+
+DELETE ile sil:
+DELETE FROM category WHERE category_id=5;
+
+Tablo yedeği oluştur
+CREATE TABLE _category AS SELECT * FROM category;
+
+Tablo yedeği sil
+DROP TABLE _category
+
+Tabloyu kolayca copy le(tabloya sağ tık send to sql editor + create statement)
+
+Bir tablodan başka tabloya kopyala:
+INSERT INTO _customer SELECT * FROM customer;
+
+
+Spesifik kopyala(Limitli):
+INSERT INTO _customer(first_name,last_name) SELECT fisrt_name,last_name FROM customer LIMIT 2
+
+
+
+
+
