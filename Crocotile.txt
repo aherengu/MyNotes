@@ -1,0 +1,70 @@
+C: center cam and now you can rotate in this center
+
+SPACE + LEFT: rotate scene
+SPACE + MIDDLE: zoom scene
+SPACE + RIGHT: rotate scene
+
+SPACE + (Y or G or H or J): slow cam move
+TAB: draw or edit mode		
+
+LEFT: deploy tile (on draw mode)
+RIGHT: delete (size of your tile)
+SHIFT + LEFT (HOLD): Fill rectangle (You camn)
+W or A or S or D: move crosshair (
+decide where to put the tiles)
+SPACE + (W or A or S or D):  move crosshair on other axis (
+decide where to put the tiles)(you can change move distance in "GRID ROUNDING")
+SHIFT + (W or A or S or D): move crosshair without selection
+SHIFT (WHILE GIZMOS ON): Move gizmo
+ALT (WHILE GIZMOS ON): Rotate gizmo
+X: open close gizmos
+SHIFT + X: change between transform, rotate and scale
+SHIFT (WHILE DRAGGIN VERTEX): To snap other vertex
+CTRL + LEFT: Click for tile to select seperate vertex
+LEFT OR RIGHT OR UP OR DOWN: Adjust uv of selected vertex
+MIDLE: Open active selection
+
+Q OR E: Rotate tile
+F OR R: Flip or mirror tile
+SHIFT + R OR F: Flip or mirror tile on other axis
+ALT + LEFT: apply the tilebrush to  existing tiles
+ALT + RIGHT: to eyedrop it to your tilebrush
+CTRL + D: Deselect all vertex (Or click nothing)
+SHIFT (While selecthing vertex): Select multiple vertex 
+CTRL + SHIFT + D: Deselect all objects
+
+B: Select behind of tile
+
+1:Default draw
+2:Sticky draw (SHIFT for normal scale)
+3:Block draw
+4:Vertex color draw (ALT + RIGHT: Eyedrop color)
+
+ALT + B: Bake Lighting
+ALT + 1 (On Draw Mode): Brush
+
+
+ALT + 9: Change camera mod
+CTRL + 9: Wireframe on off
+9: Two side tile
+SHIFT + ": Only show 3d
+ALT + G: Reset Crosshair
+ALT + C: Snap Crosshair to nearest vertex
+ALT + X: Snap Grid  to nearest vertex
+
+SPACE + F: Freelook camera on off.
+(F: Toggle Flat Movement mode.
+SHIFT: Fast
+Alt: Slow
+F: Flaten move
+)
+
+SHIFT + R: Make invisible tile
+T: Change tile anchors between eachother
+SHIFT + T: Make anchor 
+
+CTRL + E: Export scene as a .obj, .gltf, .glb, .dae
+CTRL + SHIFT + E: Export objects separately as .obj, .gltf, .glb, .dae files.
+
+
+
