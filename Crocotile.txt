@@ -12,7 +12,7 @@ RIGHT: delete (size of your tile)
 SHIFT + LEFT (HOLD): Fill rectangle (You camn)
 W or A or S or D: move crosshair (
 decide where to put the tiles)
-SPACE + (W or A or S or D):  move crosshair on other axis (
+SPACE + (W or A):  move crosshair on other axis (
 decide where to put the tiles)(you can change move distance in "GRID ROUNDING")
 SHIFT + (W or A or S or D): move crosshair without selection
 SHIFT (WHILE GIZMOS ON): Move gizmo
@@ -33,14 +33,47 @@ CTRL + D: Deselect all vertex (Or click nothing)
 SHIFT (While selecthing vertex): Select multiple vertex 
 CTRL + SHIFT + D: Deselect all objects
 
-B: Select behind of tile
+SHIFT + F: Flip tile's edge (recess and protrusion) 
+SHIFT + R: Flip tile's face 
+SHIFT + P: Push against crosshair plane
+CTRL + P: Push against croshair other plane 
+Vertices>Straigten relative to their own tiles
+/: Push vertex from camera
+Transform Window-Against: Shape against behind tile
+(Select tile + MIDDLE + YELLOW + RIGHT + FACES>SPLIT): Split faces (You can change yellow with "TILE SPLITTING")
+ALT + E (Select face): Extrude face
 
+B: Select behind of tile
+ALT + D: Subdivide
+ALT + LEFT: Deselect vertex
+SHIFT + LEFT: Select faces
+ALT + SHIFT + LEFT: Deselect faces
+CTRL + A (After select one tile): Select all vertex
+CTRL + LEFT: Select objects
+ALT + CTRL + LEFT: Deselect objects
 1:Default draw
 2:Sticky draw (SHIFT for normal scale)
 3:Block draw
 4:Vertex color draw (ALT + RIGHT: Eyedrop color)
 
+CTRL (On Tileset): 1 pixel move
+SPACE + LEFT(On Tileset): Pan tileset viewport
+
+SHIFT + LEFT DRAG (On Uv): Snap uv
+N: Flatten uv for strecthed shape
+
+ALT + LEFT DRAG: Duplicate keyframes by clicking and dragging selected keyframes 
+
+
+
 ALT + B: Bake Lighting
+(Tileset>Material>Type>Lambert
+Add light
+Select all vertex
+Vertex Normal: Flat/Smooth
+Ambient Occlusion
+Bake Lighting
+)
 ALT + 1 (On Draw Mode): Brush
 
 
