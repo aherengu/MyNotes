@@ -213,3 +213,13 @@ SELECT FLOOR(25.4)
 RAND(0 ile 1 arası sayı, 0 dahil 1 değil. İçine seed girilebiliyo.
 SELECT RAND()
 
+Metin uzunluğu al:
+SELECT product_name, char_length(product_name) FROM product;
+
+Küçült Büyüt:
+SELECT LOWER("MYSQL");
+SELECT LCASE("MYSQL");
+SELECT UPPER("mysql");
+SELECT UCASE("mysql");
+
+
